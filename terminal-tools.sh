@@ -1,21 +1,32 @@
 # -- VARIABLES --
+S_ERROR=""
+S_SUCCESS=""
+S_WARNING=""
+S_INFO=""
+S_PARAM=""
+S_PROCESS=""
+S_BOLD=""
+S_END=""
 
-# Styles pour les logs
-S_ERROR=$(tput setaf 9)         # Rouge vif
-#S_ERROR='\e[38;5;9m'           # Rouge vif
-S_SUCCESS=$(tput setaf 118)     # Vert
-#S_SUCCESS='\e[38;5;118m'       # Vert
-S_WARNING=$(tput setaf 220)     # Jaune
-#S_WARNING='\e[38;5;220m'       # Jaune
-S_INFO=$(tput setaf 75)         # Bleu fixe
-#S_INFO='\e[38;5;75m'           # Bleu fixe
-S_PARAM=$(tput setaf 219)       # Cyan clair
-#S_PARAM='\e[38;5;219m'         # Cyan clair
-S_PROCESS=$(tput setaf 229)     # Jaune clair
-#S_PROCESS='\e[38;5;229m'       # Jaune clair
-S_BOLD=$(tput bold)             # Gras
-S_END=$(tput sgr0)              # Balise de fin de styles
-#S_END='\033[0m'                # Balise de fin de styles
+# Mode terminal
+if [ -t 1 ]; then
+    # Styles pour les logs
+    S_ERROR=$(tput setaf 9)         # Rouge vif
+    #S_ERROR='\e[38;5;9m'           # Rouge vif
+    S_SUCCESS=$(tput setaf 118)     # Vert
+    #S_SUCCESS='\e[38;5;118m'       # Vert
+    S_WARNING=$(tput setaf 220)     # Jaune
+    #S_WARNING='\e[38;5;220m'       # Jaune
+    S_INFO=$(tput setaf 75)         # Bleu fixe
+    #S_INFO='\e[38;5;75m'           # Bleu fixe
+    S_PARAM=$(tput setaf 219)       # Cyan clair
+    #S_PARAM='\e[38;5;219m'         # Cyan clair
+    S_PROCESS=$(tput setaf 229)     # Jaune clair
+    #S_PROCESS='\e[38;5;229m'       # Jaune clair
+    S_BOLD=$(tput bold)             # Gras
+    S_END=$(tput sgr0)              # Balise de fin de styles
+    #S_END='\033[0m'                # Balise de fin de styles
+fi
 
 # -- LOGS --
 
@@ -105,7 +116,7 @@ show_spinner() {
     local pid=$1
     local spin='-\|/'
     local i=0
-    
+
     echo -n "${message} " >&2
     while kill -0 $pid 2>/dev/null; do
         i=$(( (i+1) %4 ))
