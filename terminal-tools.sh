@@ -9,17 +9,17 @@ S_PROCESS=""
 S_BOLD=""
 S_END=""
 
-# Tags
+# TAGS LOGS SYSTEMD
 SPACE=" "
 T_INFO="[INFO]${SPACE}"
 T_SUCCESS="[ :D ]${SPACE}"
 T_WARNING="[WARN]${SPACE}"
-T_FAIL="[FAIL]${SPACE}"
-T_ERROR="[ ERR]${SPACE}"
+T_FAIL="![FAIL]${SPACE}"
+T_ERROR="![!ERR]${SPACE}"
 T_DEBUG="[DBUG]${SPACE}"
 T_PARAM="[ PRM]${SPACE}"
 
-# -- VARIABLES CONSOLE --
+# -- TAGS LOGS CONSOLE --
 if [ -t 1 ]; then
     # Styles pour les logs
     S_ERROR=$(tput setaf 9)         # Rouge vif
